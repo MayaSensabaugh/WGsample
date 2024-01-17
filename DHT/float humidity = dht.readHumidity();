@@ -1,0 +1,32 @@
+// Libraries
+#include <DHT.h>
+
+// Sensor pins
+#define DHTPIN 13
+
+// Sensor defintions
+#define DHTTYPE DHT11
+DHT dht(DHTPIN,DHTTYPE);
+void setup() {
+    //set up serial communication
+    Serial.begin(9600);
+
+    // Set up sensors
+    dht.begin();
+
+    // Legend
+    Serial.printIn(" Humidity(%) temp(F) ");
+}
+void loop() {
+    delay(100); // Take a reading every 0.1 seconds
+
+    // DHR sensor
+    float humidity = dht.readHumidity();
+    float tempF = dht.readTemperature();
+    Sensor.print(humidity);
+    Serial.print(" ");
+    Serial.print(tempF);
+
+    Serial.print("\n");
+    
+}
